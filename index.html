@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Your Local Weather</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link rel=StyleSheet href="custom.css" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+    <script>
+
+    var longLabel = document.getElementById("userLongitude");
+    var latLabel = document.getElementById("userLatitude");
+    var devKey = "7242d1a71eb8bfd7a2e7a0eda923da51";
+    var userLong;
+    var userLat;
+
+    $(document).ready(function() {
+    });
+
+    function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+          longLabel.innerHTML = "Geolocation is not supported by this browser.";
+          latLabel.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+
+    function showPosition(position) {
+      userLong = position.coords.longitude;
+      userLat = position.coords.latitude;
+      setLongLat();
+    }
+
+    function setLongLat() {
+      longLabel.innerHTML = "Longitude: " + userLong;
+      latLabel.innerHTML = "Latitude: " + userLat;
+    }
+
+    </script>
+  </head>
+
+  <body>
+    <h1>Find Your Local Weather!</h1>
+    <a href="https://darksky.net/poweredby/" target="_blank"><img src="https://darksky.net/dev/img/attribution/poweredby.png" height="200px" width="475px"></a>
+    <p>Click the button to get your coordinates.</p>
+
+    <button onclick="getLocation()">Try It</button>
+
+    <h1 id="userLongitude">Longitude: </h1>
+    <h1 id="userLatitude">Latitude: </h1>
+  </body>
+</html>
