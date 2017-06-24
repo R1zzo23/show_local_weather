@@ -47,6 +47,30 @@
       latLabel.innerHTML = "Latitude: " + userLat;
     }
 
+    // test to access Dark Sky API and print out all JSON keys with values
+
+    $("#btn").on("click", function() {
+
+      var apiLink = "https://api.darksky.net/forecast/" + devKey + "/" + userLat + "," + userLong;
+
+      $("#printJSON").innerHTML(apiLink);
+      /*
+      $.getJSON("https://api.darksky.net/forecast/" + devKey + "/" + userLat + "," + userLong, function(json) {
+        var html = "";
+        json.forEach(function(val) {
+          var keys = Object.keys(val);
+          html += "<div class = 'weather'>";
+          keys.forEach(function(key) {
+            html += "<strong>" + key + "</strong>: " + val[key] + "<br>";
+          });
+          html += "</div><br>";
+        });
+
+        $("#printJSON").html(html);
+      });*/
+    });
+    // end of test
+
     </script>
   </head>
 
@@ -55,9 +79,10 @@
     <a href="https://darksky.net/poweredby/" target="_blank"><img src="https://darksky.net/dev/img/attribution/poweredby.png" height="200px" width="475px"></a>
     <p>Click the button to get your coordinates.</p>
 
-    <button onclick="getLocation()">Try It</button>
+    <button id="btn" onclick="getLocation()">Try It</button>
 
     <h1 id="userLongitude">Longitude: </h1>
     <h1 id="userLatitude">Latitude: </h1>
+    <p id="printJSON"></p>
   </body>
 </html>
