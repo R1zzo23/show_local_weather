@@ -45,13 +45,20 @@
     function setLongLat() {
       longLabel.innerHTML = "Longitude: " + userLong;
       latLabel.innerHTML = "Latitude: " + userLat;
+      setAPILink();
+    }
+
+    function setAPILink (){
+      var apiLink = "https://api.darksky.net/forecast/" + devKey + "/" + userLat + "," + userLong;
+
+      $("#printJSON").innerHTML(apiLink);
     }
 
     // test to access Dark Sky API and print out all JSON keys with values
 
     $("#btn").on("click", function() {
 
-      var apiLink = "https://api.darksky.net/forecast/" + devKey + "/" + userLat + "," + userLong;
+      var apiLink = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + devKey + "/" + userLat + "," + userLong;
 
       $("#printJSON").innerHTML(apiLink);
       /*
